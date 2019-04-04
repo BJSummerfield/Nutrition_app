@@ -1,8 +1,8 @@
 class Api::FoodsController < ApplicationController
   def index
     food = params[:food]
-
-    response = HTTP.get("https://api.nal.usda.gov/ndb/search/?format=json&q=#{food}&max=3&fg=&offset=0&api_key=#{ENV["API_KEY"]}")
+    group = params[:group]
+    response = HTTP.get("https://api.nal.usda.gov/ndb/search/?format=json&q=#{food}&max=3&fg=#{group}&offset=0&api_key=#{ENV["API_KEY"]}")
     foods = response.parse #Search terms q=search fg = database type
 
     ndbno = []
