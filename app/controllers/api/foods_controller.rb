@@ -2,7 +2,7 @@ class Api::FoodsController < ApplicationController
   def index
     food = params[:food]
 
-    response = HTTP.get("https://api.nal.usda.gov/ndb/search/?format=json&q=#{food}&max=3&fg=brandedproducts&offset=0&api_key=#{ENV["API_KEY"]}")
+    response = HTTP.get("https://api.nal.usda.gov/ndb/search/?format=json&q=#{food}&max=3&fg=&offset=0&api_key=#{ENV["API_KEY"]}")
     foods = response.parse #Search terms q=search fg = database type
 
     ndbno = []
@@ -52,3 +52,5 @@ end
 # 2000 - Cereal Grains and Pasta
 # 2100 - Fast Foods
 # 2200 - Meals, Entrees, and Side Dishes
+
+# https://ndb.nal.usda.gov/ndb/nutrients/index nutrients list
