@@ -2,7 +2,45 @@ class Foodapi
   URL = 'https://api.nal.usda.gov'
   RESULT_COUNT = 5
 
-  # Food groups 
+  def self.ndbno_list(params)
+    search(params)[:list][:item].map{|food| food[:ndbno]}
+  end
+  
+  def self.search(params)
+    request('/ndb/search/', {
+      q: params[:food],
+      max: RESULT_COUNT,
+      fg: params[:group],
+      offset: 0,
+    })
+  rescue HTTP::Error
+    {list: {item: []}}
+  end
+
+  def self.request(path, params)
+    HTTP.get(URL + path, params: {
+      format: 'json',
+      api_key: ENV['API_KEY']
+    }.merge(params)).parse.to_h.deep_symbolize_keys
+  end
+
+  def self.food_list(ndbno)
+    report(ndbno)[:foods]
+  end
+
+  def self.report(ndbno)
+    request('/ndb/V2/reports', {
+      type: 'b', 
+      ndbno: ndbno
+    })
+  rescue HTTP::Error
+    {foods: []}
+  end
+end
+
+#name -- [labels]
+
+# Food groups 
 # 0100 - Dairy and Egg Products
 # 0200 - Spices and Herbs
 # 0300 - Baby Foods
@@ -25,41 +63,3 @@ class Foodapi
 # 2000 - Cereal Grains and Pasta
 # 2100 - Fast Foods
 # 2200 - Meals, Entrees, and Side Dishes
-  
-  def self.search(params)
-    request('/ndb/search/', {
-      q: params[:food],
-      max: RESULT_COUNT,
-      fg: params[:group],
-      offset: 0
-    })
-  rescue HTTP::Error
-    {list: {item: []}}
-  end
-
-  def self.ndbno_list(params)
-    search(params)[:list][:item].map{|food| food[:ndbno]}
-  end
-
-  def self.report(ndbno)
-    request('/ndb/V2/reports', {
-      type: 'b', 
-      ndbno: ndbno
-    })
-  rescue HTTP::Error
-    {foods: []}
-  end
-
-  def self.food_list(ndbno)
-    report(ndbno)[:foods]
-  end
-
-  def self.request(path, params)
-    HTTP.get(URL + path, params: {
-      format: 'json',
-      api_key: ENV['API_KEY']
-    }.merge(params)).parse.to_h.deep_symbolize_keys
-  end
-end
-
-#name -- [labels]
