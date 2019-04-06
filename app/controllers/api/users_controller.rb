@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  
+
   def create
     if user
       render json: {messages: 'User created successfully', success: true}, status: :created

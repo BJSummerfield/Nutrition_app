@@ -8,5 +8,9 @@ Rails.application.routes.draw do
     get "/foods/:ndbno" => "foods#show"
 
     post '/users' => 'users#create'
+
+    post "/sessions" => "sessions#create"
+
+    post "/consumptions" => 'consumptions#create'
   end
 end
