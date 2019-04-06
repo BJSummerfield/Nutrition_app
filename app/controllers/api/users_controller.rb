@@ -1,17 +1,21 @@
 class Api::UsersController < ApplicationController
   
   def create
-    user = User.new(
-      name: params[:name],
-      email: params[:email],
-      password: params[:password],
-      password_confirmation: params[:password_confirmation]
-      )
-
-    if user.save
-      render json: {message: 'User created successfully'}, status: :created
+    if user
+      render json: {messages: 'User created successfully', success: true}, status: :created
     else
-      render json: {errors: user.errors.full_messages}, status: :bad_request
+      render json: {messages: user.errors.full_messages, success: false}, status: :bad_request
     end
   end
+  
+  private
+
+  def user_params
+    params.permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def user
+    @user ||= User.create(user_params)
+  end
 end
+
