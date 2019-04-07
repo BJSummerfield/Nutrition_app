@@ -1,7 +1,7 @@
 class Api::UsersController < ApplicationController
 
   def create
-    if user
+    if user.persisted?
       render json: {messages: 'User created successfully', success: true}, status: :created
     else
       render json: {messages: user.errors.full_messages, success: false}, status: :bad_request
@@ -15,7 +15,8 @@ class Api::UsersController < ApplicationController
   end
 
   def user
-    @user ||= User.create(user_params)
+    User.create(user_params)
   end
+
 end
 

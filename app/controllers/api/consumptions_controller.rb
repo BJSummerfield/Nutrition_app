@@ -1,10 +1,10 @@
 class Api::ConsumptionsController < ApplicationController
 
-before_action :authenticate_user
+  before_action :authenticate_user
   
   def create
-    if consumption
-      render json: {messages: 'User created successfully', success: true}, status: :created
+    if consumption.persisted?
+      render json: {messages: 'consumption created successfully', success: true}, status: :created
     else
       render json: {messages: consumption.errors.full_messages, success: false}, status: :bad_request
     end
@@ -13,11 +13,7 @@ before_action :authenticate_user
   private
   
   def consumption
-    x = current_user
-    @consumption ||= Consumption.create!(
-      
-      consumption_params
-      )
+    Consumption.create(consumption_params)
   end
 
   def consumption_params
@@ -26,7 +22,9 @@ before_action :authenticate_user
       :name, 
       :protein, 
       :sodium, 
-      :energy,
-      )
+      :energy).
+    merge(
+      user_id: current_user.id
+        )
   end
 end
