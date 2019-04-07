@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
     post "/sessions" => "sessions#create"
 
+
+    get "/consumptions" => 'consumptions#index'
     post "/consumptions" => 'consumptions#create'
   end
 end

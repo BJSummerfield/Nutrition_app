@@ -2,6 +2,12 @@ class Api::ConsumptionsController < ApplicationController
 
   before_action :authenticate_user
   
+  def index
+    @consumptions = current_user.consumptions.where(user_id: current_user.id)
+    render "index.json.jbuilder"
+  end 
+  
+
   def create
     if consumption.persisted?
       render json: {messages: 'consumption created successfully', success: true}, status: :created
