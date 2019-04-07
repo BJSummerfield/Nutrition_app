@@ -6,6 +6,11 @@ class Api::ConsumptionsController < ApplicationController
     @consumptions = current_user.consumptions.where(user_id: current_user.id)
     render "index.json.jbuilder"
   end 
+
+  def show
+    @consumption = Consumption.find_by(id: params[:id])
+    render 'show.json.jbuilder'
+  end
   
 
   def create
@@ -14,6 +19,12 @@ class Api::ConsumptionsController < ApplicationController
     else
       render json: {messages: consumption.errors.full_messages, success: false}, status: :bad_request
     end
+  end
+
+  def destroy
+    @consumption = Consumption.find_by(id: params[:id])
+    @consumption.destroy
+    render json: {message: "Successfully Destroyed Product"}
   end
 
   private
