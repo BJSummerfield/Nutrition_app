@@ -39,7 +39,8 @@ class Api::ConsumptionsController < ApplicationController
       :name, 
       :protein, 
       :sodium, 
-      :energy).
+      :energy,
+      :date).
     merge(
       user_id: current_user.id
         )

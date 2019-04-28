@@ -1,4 +1,4 @@
-json.created_at consumption.created_at
+json.date consumption.date
 json.id consumption.id
 json.user consumption.user_id
 json.meal consumption.meal

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_28_173540) do
+ActiveRecord::Schema.define(version: 2019_04_28_194820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2019_04_28_173540) do
     t.integer "sodium"
     t.integer "energy"
     t.string "name"
+    t.string "date"
   end
 
   create_table "diets", force: :cascade do |t|
