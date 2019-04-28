@@ -15,10 +15,9 @@ Rails.application.routes.draw do
     get "/consumptions" => 'consumptions#index'
     get "/consumptions/:id" => 'consumptions#show'
     post "/consumptions" => 'consumptions#create'
+    delete "/consumptions/:id" => 'consumptions#destroy'
 
     get '/groups' => "groups#index"
-    
-    delete "/consumptions/:id" => 'consumptions#destroy'
 
 
   end
