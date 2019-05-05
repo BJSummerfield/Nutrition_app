@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 
     get '/groups' => "groups#index"
 
+    post "/diets" => 'diets#create'
+    post '/diets' => 'diets#update'
+
 
   end
 end
