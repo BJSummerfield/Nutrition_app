@@ -6,3 +6,14 @@ json.name consumption.name
 json.protein consumption.protein
 json.sodium consumption.sodium
 json.energy consumption.energy
+json.total_fat consumption.total_fat
+json.saturated_fat consumption.saturated_fat
+json.trans_fat consumption.trans_fat
+json.cholesterol consumption.cholesterol
+json.total_carbs consumption.total_carbs
+json.dietary_fiber consumption.dietary_fiber
+json.sugars consumption.sugars
+json.vitamin_a consumption.vitamin_a
+json.vitamin_c consumption.vitamin_c
+json.calcium consumption.calcium
+json.iron consumption.iron

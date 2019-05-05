@@ -1,6 +1,6 @@
 class Foodapi
   URL = 'https://api.nal.usda.gov'
-  RESULT_COUNT = 5
+  RESULT_COUNT = 10
 
   def self.ndbno_list(params)
     search(params)[:list][:item].map{|food| food[:ndbno]}

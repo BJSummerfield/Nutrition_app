@@ -37,9 +37,20 @@ class Api::ConsumptionsController < ApplicationController
     params.permit(
       :meal, 
       :name, 
-      :protein, 
-      :sodium, 
       :energy,
+      :total_fat,
+      :saturated_fat,
+      :trans_fat,
+      :cholesterol,
+      :sodium,
+      :total_carbs,
+      :dietary_fiber,
+      :sugars,
+      :protein,
+      :vitamin_a,
+      :vitamin_c,
+      :calcium,
+      :iron,
       :date).
     merge(
       user_id: current_user.id
