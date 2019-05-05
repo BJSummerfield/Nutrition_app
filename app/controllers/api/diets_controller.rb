@@ -1,12 +1,20 @@
 class Api::DietsController < ApplicationController
-	before_action :authenticate_user
-	def create
+	# before_action :authenticate_user
+	
+  def show
+    @diet = Diet.find_by(user_id: current_user.id)
+    render 'show.json.jbuilder'
+  end
+
+  def create
 	  if diet_create.persisted?
       	render json: {messages: 'diet created successfully', success: true}, status: :created
       else
       	render json: {messages: diet_create.errors.full_messages, success: false}, status: :bad_request
-      end
+    end
 	end
+
+
 
 	def update
 		@diet = Diet.find_by(user_id: params[:user_id])
