@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
     get '/diets' => 'diets#show'
     post "/diets" => 'diets#create'
-    post '/diets' => 'diets#update'
+    patch '/diets' => 'diets#update'
 
 
 

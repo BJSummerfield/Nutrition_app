@@ -1,5 +1,5 @@
 class Api::DietsController < ApplicationController
-	# before_action :authenticate_user
+	before_action :authenticate_user
 	
   def show
     @diet = Diet.find_by(user_id: current_user.id)
@@ -17,9 +17,9 @@ class Api::DietsController < ApplicationController
 
 
 	def update
-		@diet = Diet.find_by(user_id: params[:user_id])
+		@diet = Diet.find_by(user_id: current_user.id)
 		if @diet.update(diet_params)
-			render json: {messages: 'diet updated successfully', success: true}, status: :updated
+			render json: {messages: 'diet updated successfully', success: true}, status: :ok
 		else
 			render json: {messages: diet.errors.full_messages, success: :false}, status: :bad_request
 		end
@@ -47,7 +47,8 @@ class Api::DietsController < ApplicationController
       :vitamin_c,
       :calcium,
       :iron,
-      :date).
+      :date,
+      :diet).
     merge(
       user_id: current_user.id
         )
