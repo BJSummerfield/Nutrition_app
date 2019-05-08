@@ -1,4 +1,5 @@
 class Api::FoodsController < ApplicationController
+  before_action :authenticate_user
   def index
     ndbno = Foodapi.ndbno_list(ndbno_params)
     @foods = Foodapi.food_list(ndbno)

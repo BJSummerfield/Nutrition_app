@@ -9,7 +9,7 @@ class Api::DietsController < ApplicationController
   def create
 	  if diet_create.persisted?
       	render json: {messages: 'diet created successfully', success: true}, status: :created
-      else
+    else
       	render json: {messages: diet_create.errors.full_messages, success: false}, status: :bad_request
     end
 	end
@@ -21,7 +21,7 @@ class Api::DietsController < ApplicationController
 		if @diet.update(diet_params)
 			render json: {messages: 'diet updated successfully', success: true}, status: :ok
 		else
-			render json: {messages: diet.errors.full_messages, success: :false}, status: :bad_request
+			render json: {messages: @diet.errors.full_messages, success: :false}, status: :bad_request
 		end
 	end
 
