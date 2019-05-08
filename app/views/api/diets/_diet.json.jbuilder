@@ -1,15 +1,13 @@
-json.id diet.id
-json.user_id diet.user_id
-json.protein diet.protein
-json.sodium diet.sodium
 json.energy diet.energy
 json.total_fat diet.total_fat
 json.saturated_fat diet.saturated_fat
 json.trans_fat diet.trans_fat
 json.cholesterol diet.cholesterol
+json.sodium diet.sodium
 json.total_carbs diet.total_carbs
 json.dietary_fiber diet.dietary_fiber
 json.sugars diet.sugars
+json.protein diet.protein
 json.vitamin_a diet.vitamin_a
 json.vitamin_c diet.vitamin_c
 json.calcium diet.calcium
